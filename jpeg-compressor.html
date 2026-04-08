@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compressor JPEG — Comprima Imagens Online | ToolFlow</title>
+  <meta name="description" content="Comprima imagens JPEG e PNG diretamente no seu navegador. Reduza o tamanho do arquivo sem perder qualidade visível. Gratuito, privado, sem uploads.">
+  <link rel="canonical" href="https://ferramentasgratuitas.com/tools/image/jpeg-compressor.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><rect width='28' height='28' rx='6' fill='%232563eb'/><path d='M8 9h12M8 14h8M8 19h10' stroke='white' stroke-width='2' stroke-linecap='round'/></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <section class="tool-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="/index.html">Início</a><span class="sep">/</span><a href="/categories/image-tools.html">Ferramentas de Imagem</a><span class="sep">/</span>Compressor JPEG</div>
+      <h1>Compressor JPEG</h1>
+      <p class="tool-description">Comprima imagens JPEG e PNG diretamente no seu navegador. Ajuste a qualidade e veja os resultados em tempo real. Seus arquivos nunca saem do seu dispositivo.</p>
+      <span class="trust-badge">🔒 Arquivos são processados localmente — nenhum upload para servidores</span>
+    </div>
+  </section>
+
+  <section class="tool-main">
+    <div class="container">
+      <div class="tool-interface">
+        <!-- Zona de Soltar -->
+        <div class="file-drop" id="dropZone" onclick="document.getElementById('fileInput').click()">
+          <div class="drop-icon">📷</div>
+          <p><strong>Solte sua imagem aqui</strong> ou clique para procurar</p>
+          <p class="drop-hint">Suporta JPEG, PNG, WebP — máx. 20MB</p>
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none">
+        </div>
+
+        <!-- Controles (ocultos até carregar arquivo) -->
+        <div id="controls" class="hidden mt-3">
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <label style="font-size:0.85rem;font-weight:600;color:var(--color-text-secondary)">Qualidade:</label>
+            <input type="range" id="qualitySlider" min="1" max="100" value="75" style="max-width:300px">
+            <span id="qualityValue" style="font-weight:700;min-width:40px">75%</span>
+            <select id="outputFormat" style="width:auto">
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/webp">WebP</option>
+              <option value="image/png">PNG</option>
+            </select>
+          </div>
+
+          <div class="stats-row mt-2">
+            <div class="stat-item"><div class="stat-value" id="origFileSize">—</div><div class="stat-label">Original</div></div>
+            <div class="stat-item"><div class="stat-value" id="compFileSize">—</div><div class="stat-label">Comprimido</div></div>
+            <div class="stat-item"><div class="stat-value" id="savings">—</div><div class="stat-label">Economia</div></div>
+            <div class="stat-item"><div class="stat-value" id="dimensions">—</div><div class="stat-label">Dimensões</div></div>
+          </div>
+
+          <!-- Pré-visualização -->
+          <div class="preview-container mt-3">
+            <div class="preview-box">
+              <div style="text-align:center">
+                <div style="font-size:0.75rem;font-weight:600;color:var(--color-text-muted);margin-bottom:0.5rem">ORIGINAL</div>
+                <img id="origPreview" alt="Original">
+              </div>
+            </div>
+            <div class="preview-box">
+              <div style="text-align:center">
+                <div style="font-size:0.75rem;font-weight:600;color:var(--color-text-muted);margin-bottom:0.5rem">COMPRIMIDO</div>
+                <img id="compPreview" alt="Comprimido">
+              </div>
+            </div>
+          </div>
+
+          <div class="action-bar">
+            <div class="btn-group">
+              <button class="btn btn-primary btn-lg" onclick="downloadCompressed()">⬇ Baixar Imagem Comprimida</button>
+              <button class="btn btn-secondary" onclick="resetTool()">Nova Imagem</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-sm">
+        <div class="faq-list">
+          <h2 class="mb-3">FAQ</h2>
+          <div class="faq-item"><button class="faq-question">Minha imagem é enviada para um servidor?<span class="faq-icon">+</span></button><div class="faq-answer">Não! Toda a compressão acontece inteiramente no seu navegador usando a API Canvas do HTML5. Suas imagens nunca saem do seu dispositivo. Isso é completamente privado e funciona offline também.</div></div>
+          <div class="faq-item"><button class="faq-question">Qual é a melhor configuração de qualidade?<span class="faq-icon">+</span></button><div class="faq-answer">Para a maioria dos casos, qualidade de 70-80% proporciona excelentes resultados com redução significativa de tamanho. Abaixo de 50%, você pode começar a notar artefatos visíveis. Para imagens web, 75% é geralmente ideal.</div></div>
+          <div class="faq-item"><button class="faq-question">Quais formatos são suportados?<span class="faq-icon">+</span></button><div class="faq-answer">Você pode enviar imagens JPEG, PNG e WebP. A saída pode ser JPEG, WebP ou PNG. Para máxima compressão, JPEG ou WebP são recomendados.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-tools section-alt">
+    <div class="container">
+      <h2>Ferramentas Relacionadas</h2>
+      <div class="grid-3 mt-3">
+        <a href="/generators/qr-code-generator.html" class="card tool-card"><div class="tool-icon icon-generator">📱</div><h3>Gerador de QR Code</h3><p>Gere QR codes personalizados.</p><span class="card-arrow">Usar ferramenta →</span></a>
+        <a href="/generators/color-palette-generator.html" class="card tool-card"><div class="tool-icon icon-generator">🎨</div><h3>Gerador de Paleta de Cores</h3><p>Crie paletas de cores.</p><span class="card-arrow">Usar ferramenta →</span></a>
+        <a href="/converters/base64-converter.html" class="card tool-card"><div class="tool-icon icon-converter">🔐</div><h3>Conversor Base64</h3><p>Codifique/decodifique Base64.</p><span class="card-arrow">Usar ferramenta →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/components.js"></script>
+  <script>
+    document.getElementById('header').innerHTML = renderHeader('');
+    document.getElementById('footer').innerHTML = renderFooter('');
+    initMobileMenu();
+    initHeaderScroll();
+
+    let originalFile = null;
+    let compressedBlob = null;
+
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const qualitySlider = document.getElementById('qualitySlider');
+
+    // Arrastar e soltar
+    ['dragenter', 'dragover'].forEach(evt => {
+      dropZone.addEventListener(evt, (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+    });
+    ['dragleave', 'drop'].forEach(evt => {
+      dropZone.addEventListener(evt, (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); });
+    });
+    dropZone.addEventListener('drop', (e) => {
+      const files = e.dataTransfer.files;
+      if (files.length) handleFile(files[0]);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length) handleFile(e.target.files[0]);
+    });
+
+    qualitySlider.addEventListener('input', () => {
+      document.getElementById('qualityValue').textContent = qualitySlider.value + '%';
+      if (originalFile) compressImage();
+    });
+
+    document.getElementById('outputFormat').addEventListener('change', () => {
+      if (originalFile) compressImage();
+    });
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(2) + ' MB';
+    }
+
+    function handleFile(file) {
+      if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
+        ToastManager.error('Selecione uma imagem JPEG, PNG ou WebP');
+        return;
+      }
+      if (file.size > 20 * 1024 * 1024) {
+        ToastManager.error('Arquivo muito grande. Máximo 20MB.');
+        return;
+      }
+      originalFile = file;
+      document.getElementById('origFileSize').textContent = formatSize(file.size);
+      document.getElementById('controls').classList.remove('hidden');
+      dropZone.style.display = 'none';
+
+      // Mostrar pré-visualização original
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('origPreview').src = e.target.result;
+        compressImage();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function compressImage() {
+      const quality = parseInt(qualitySlider.value) / 100;
+      const format = document.getElementById('outputFormat').value;
+      const img = new Image();
+      img.onload = () => {
+        document.getElementById('dimensions').textContent = img.width + '×' + img.height;
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob((blob) => {
+          compressedBlob = blob;
+          document.getElementById('compPreview').src = URL.createObjectURL(blob);
+          document.getElementById('compFileSize').textContent = formatSize(blob.size);
+          const saved = Math.round((1 - blob.size / originalFile.size) * 100);
+          document.getElementById('savings').textContent = (saved > 0 ? saved : 0) + '%';
+        }, format, quality);
+      };
+      img.src = URL.createObjectURL(originalFile);
+    }
+
+    function downloadCompressed() {
+      if (!compressedBlob) { ToastManager.error('Nenhuma imagem comprimida'); return; }
+      const format = document.getElementById('outputFormat').value;
+      const ext = format.split('/')[1];
+      const name = originalFile.name.replace(/\.[^.]+$/, '') + '-comprimido.' + ext;
+      downloadBlobFile(compressedBlob, name);
+    }
+
+    function resetTool() {
+      originalFile = null;
+      compressedBlob = null;
+      fileInput.value = '';
+      document.getElementById('controls').classList.add('hidden');
+      dropZone.style.display = '';
+      document.getElementById('origPreview').src = '';
+      document.getElementById('compPreview').src = '';
+    }
+  </script>
+</body>
+</html>

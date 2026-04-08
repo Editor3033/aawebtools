@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://toolflow.netlify.app/sitemap.xml
+Sitemap: https://ferramentasgratuitas.com/sitemap.xml
